@@ -1,0 +1,15 @@
+.homeCont {    
+    padding: 10px;
+    background-color: #e0e0e0fb;
+}
+.container{
+    background-color: transparent;
+  /* background-image: url("https://cdn2.tfx.company/images/clickwallpapers-world-map-wallpaper-in-full-hd-img2.jpg"); */
+  background-size: cover; /* Ajusta la imagen de fondo al tamaño de la tarjeta */
+  background-position: center; /* Centra la imagen de fondo */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

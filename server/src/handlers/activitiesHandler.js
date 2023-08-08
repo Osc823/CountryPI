@@ -24,20 +24,6 @@ const createActivitiesHandler = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-    // try {
-    //     if (!name || !difficulty || !duration || !season) {
-    //         res.status(400).send('Datos incompletos')
-    //     }
-    //     const activityCreated = await createActivy(name, difficulty, duration, season);
-    //     await activityCreated.setCountries(countries);
-
-    //     const 
-
-        
-    // } catch (error) {
-    //     res.status(500).json({ error: error.message });
-    // }
-    // res.status(200).send(`Actividad creada ${name, difficulty, duration, season}`)
 }
 
 module.exports = {

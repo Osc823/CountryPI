@@ -1,19 +1,12 @@
-//import React from "react";
-
-import { useEffect} from "react";
-import CardsCountry from "../../components/Cards/CardsCountry";
-import style from "./home.module.css";
-import { getCountry, orderName, orderPopulation, selectActivity, selectContinent } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import Paginado from "../../components/Paginado/Paginado";
+import { orderName, orderPopulation, selectContinent, selectActivity } from "../../redux/actions/actions";
+import style from "./subNabvar.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
-const Home = () => {
+const SubNavbar = () => {
     const dispatch = useDispatch();
-    
-    const allCountries = useSelector((state) => state.allCountries);
+
     const allActivities = useSelector((state) => state.allActivities);
-    
 
     const orderByName = (event) => {
         dispatch(orderName(event.target.name))
@@ -31,15 +24,8 @@ const Home = () => {
         dispatch(selectActivity(event.target.value));
     }
 
-    
-    useEffect(() => {
-      dispatch(getCountry())
-    },[])
-
-    
-
     return(
-        <div className={style.homeCont}>
+        <div>
             <div className={style.navbar}>
                 <div className={style.navbarButtons}>
                 <button name="az" onClick={orderByName}>A-Z</button>
@@ -59,8 +45,8 @@ const Home = () => {
                     </select>
                 </div>
                 <div>
-                    <select onChange={(e)=>filterContinent(e)} name="continent" className={style.selectCon}>
-                        <option value="All">Todos los Continentes</option>
+                    <select onChange={filterContinent} name="continent" className={style.selectCon}>
+                        <option value="">Todos los Continentes</option>
                         <option value="Africa">Africa</option>
                         <option value="Asia">Asia</option>
                         <option value="Europe">Europe</option>
@@ -70,12 +56,9 @@ const Home = () => {
                 </div>
                 <SearchBar />
             </div>
-            <div className={style.card}>
-                <CardsCountry info={allCountries} />
-            </div>
-            <Paginado/>
+
         </div>
     )
 }
-export default Home;
 
+export default SubNavbar;

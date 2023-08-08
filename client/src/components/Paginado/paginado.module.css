@@ -1,0 +1,25 @@
+
+.paginationButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .paginationButtons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.2s, transform 0.2s;
+    border-radius: 4px;
+  }
+  
+  .paginationButtons button:hover {
+    background-color: #0056b3;
+  }
+  
+  .paginationButtons button:active {
+    transform: scale(0.95); /* Efecto de pulsación al presionar el botón */
+  }

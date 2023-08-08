@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: 82vh;
+    background-image: url("https://cdn2.tfx.company/images/clickwallpapers-world-map-wallpaper-in-full-hd-img2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.815);
+    margin-top: 10px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.815);
+    border-radius: 10px;
+    padding-left: 150px;
+    padding-right: 100px;
+    color: white;
+}
+
+.detail div {
+    flex: 1;
+}
+
+.container div h1 {
+    background-color: rgba(0, 0, 0, 0.815);
+    border-radius: 10px;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: aliceblue;
+}
+
+.container div label {
+    font-size: 1.5rem;
+}
+
+.container div p {
+    margin-bottom: 0.5rem;
+    margin-left: 2rem;
+    font-family: 'Encode Sans', sans-serif;
+}
+
+.containerImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin: 25px;
+}
+
+.container div img {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.8s;
+}
+
+.container div img:hover {
+    transform: scale(1.05);
+    background-color: rgba(11, 14, 182, 0.461);
+    box-shadow: 0 0 1rem rgba(11, 14, 182, 0.461), 0 0 4rem rgba(11, 14, 182, 0.461), 0 0 8rem rgba(11, 14, 182, 0.461);
+}
+
+.container div button {
+    width: 5rem;
+    height: 2.2rem;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Cambia la dirección del eje principal a columna */
+}
+
+.button {
+    margin-top: 5px;
+    width: 8rem;
+    height: 3rem;
+    background-color: #f39c12;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: Arial, sans-serif Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Cambia la fuente de letra */
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    background-image: url('ruta-a-tu-imagen-de-estrellas.jpg');
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.button:hover {
+    transform: scale(1.1);
+    background-color: #f39c12;
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.795), 0 0 4rem rgba(255, 255, 255, 0.795), 0 0 8rem rgba(255, 255, 255, 0.795);
+}
+
+
+
+
