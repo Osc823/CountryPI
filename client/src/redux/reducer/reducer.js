@@ -1,15 +1,20 @@
-import { GET_COUNTRY, GET_ACTIVITY, GET_DETAI_COUNTRY , PAGINATE, ORDER_NAME_COUNTRY, ORDER_BY_POPULATION,SELECT_ACTIVITY,SEARCH_NAME, SELECT_CONTINENT } from "../actions/action-types";
+/* eslint-disable no-case-declarations */
+import { GET_COUNTRY,SELECT_SEASON ,GET_ACTIVITY, GET_DETAI_COUNTRY  ,PAGINATE, ORDER_NAME_COUNTRY, ORDER_BY_POPULATION,SELECT_ACTIVITY,SEARCH_NAME, SELECT_CONTINENT, ORDER_NAME_ACTIVITY } from "../actions/action-types";
 
 let initialState = {
     allCountries :[],
     allCountriesBackup :[],
+
     allActivities:[],
     allActivitiesBackup: [],
+
     detail:{},
+
+    currentPage: 0,
+    activityCurrentPage:0,
+
     countryFiltered: [],
-    selectedContinent:[],
-    selectedActivity:[],
-    currentPage: 0
+    activityFiltered:[],
 };
 
 const rootReducer = (state = initialState, action ) => {
@@ -21,7 +26,6 @@ const rootReducer = (state = initialState, action ) => {
                 allCountries: [...action.payload].splice(0,ITEMS_PER_PAGE), 
                 allCountriesBackup: action.payload,
                 countryFiltered: action.payload,
-                selectedContinent:action.payload,
                 detail:action.payload
             };
         case GET_ACTIVITY:
@@ -29,34 +33,71 @@ const rootReducer = (state = initialState, action ) => {
                 ...state,
                 allActivities: [...action.payload].splice(0,ITEMS_PER_PAGE),
                 allActivitiesBackup:action.payload,
-                countryFiltered: action.payload,
-                selectedActivity:action.payload
+                activityFiltered: action.payload,
             };
+        case SELECT_ACTIVITY:
+            const aa = [...state.allActivitiesBackup];
+            const actyFiltre = action.payload === "undefined" ? aa : aa.filter((ac) => ac.name === action.payload);
+
+            return {
+            ...state,
+            allActivities: [...actyFiltre],
+            activityFiltered: actyFiltre,
+            currentPage: 0
+            };
+        case SELECT_SEASON:
+            const ss = [...state.allActivitiesBackup];
+            const seasonActy = action.payload === "All" ? ss : ss.filter((ss) => ss.season === action.payload);
+            return{
+            ...state,
+            allActivities: [...seasonActy],
+            activityFiltered: seasonActy,
+            currentPage: 0
+            }
         case GET_DETAI_COUNTRY:
             return{
                 ...state,
                 detail:action.payload,
             }
+        case 'RESET_PAGINATE':
+           return{
+                ...state,
+                currentPage: 0,
+                
+           }
         
         case PAGINATE:
-            // eslint-disable-next-line no-case-declarations
-            const next_page = state.currentPage +1;
-            // eslint-disable-next-line no-case-declarations
-            const prev_page = state.currentPage -1;
-            // eslint-disable-next-line no-case-declarations
-            const firstIndex = action.payload === "next" ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
-            
-            if (action.payload === "next" && firstIndex >= state.countryFiltered.length) {return {...state}}
-            else if(action.payload === "prev" && prev_page < 0){return {...state}}
-            
-            return{
+            const nextPage = action.payload === 'next' ? state.currentPage + 1 : state.currentPage - 1;
+            const startIndex = nextPage * ITEMS_PER_PAGE;
+
+            const maxPage = Math.ceil(state.countryFiltered.length / ITEMS_PER_PAGE);
+            if (nextPage < 0 || nextPage >= maxPage) {
+                return { ...state };
+            }
+
+            return {
                 ...state,
-                allCountries:  [...state.countryFiltered].splice(firstIndex, ITEMS_PER_PAGE),
-                allActivities: [...state.countryFiltered].splice(firstIndex, ITEMS_PER_PAGE),
-                selectedContinent: [...state.countryFiltered].splice(firstIndex, ITEMS_PER_PAGE),
-                selectedActivity: [...state.countryFiltered].splice(firstIndex, ITEMS_PER_PAGE),
-                currentPage: action.payload === "next" ? next_page : prev_page
+                currentPage: nextPage,
+                allCountries: state.countryFiltered.slice(startIndex, startIndex + ITEMS_PER_PAGE),
+                // allActivities: state.activityFiltered.slice(startIndex, startIndex + ITEMS_PER_PAGE),
             };
+
+        case 'PAGINATE_ACTIVITY':
+            const nextActivityPage = action.payload === 'next' ? state.activityCurrentPage + 1 : state.activityCurrentPage - 1;
+            const activityStartIndex = nextActivityPage * ITEMS_PER_PAGE;
+
+            const maxActivityPage = Math.ceil(state.activityFiltered.length / ITEMS_PER_PAGE);
+            if (nextActivityPage < 0 || nextActivityPage >= maxActivityPage) {
+                return { ...state };
+            }
+
+            return {
+                ...state,
+                activityCurrentPage: nextActivityPage,
+                allActivities: state.activityFiltered.slice(activityStartIndex, activityStartIndex + ITEMS_PER_PAGE),
+            };
+
+            
         case ORDER_NAME_COUNTRY:
             if(action.payload === "az"){
                 const allCountryNameOrder = [...state.countryFiltered].sort((prev, next) => {
@@ -98,43 +139,13 @@ const rootReducer = (state = initialState, action ) => {
                     currentPage: 0
                 });
 
-                // if (action.payload === "All") {
-                //     // Si se selecciona la opción "Todos los Continentes", muestra todos los países sin filtro
-                //     return ({
-                //         ...state,
-                //         selectedContinent:[...action.payload].splice(0, ITEMS_PER_PAGE),
-                //     });
-                // } else {
-                //     // Filtra los países por el continente seleccionado
-                    // const filteredCountries = [...state.countryFiltered].filter(country => country.continent === action.payload);
-                //} 
-
-
                 
-            case SELECT_ACTIVITY:
-                if (action.payload === "") {
-                    // Si se selecciona la opción "Todos los Continentes", muestra todos los países sin filtro
-                    return ({
-                        ...state,
-                        allActivities:[...state.countryFiltered].splice(0, ITEMS_PER_PAGE),
-                        selectedActivity: "",
-                        currentPage: 0
-                    });
-                } else {
-                    // Filtra los países por el continente seleccionado
-                    const filteredActivity = [...state.countryFiltered].filter(act => act.name === action.payload);
-                    return ({
-                        ...state,
-                        allActivities: [...filteredActivity].splice(0, ITEMS_PER_PAGE),
-                        selectedActivity: filteredActivity,
-                        currentPage: 0
-                    });
-                } 
         // eslint-disable-next-line no-fallthrough
         case ORDER_BY_POPULATION:
             if(action.payload === "minPopulation"){
                 const allCountryNameOrder = [...state.countryFiltered].sort((prev, next) => {
                     if(prev.population > next.population) return 1
+                    //4555555 545555555 > 
                     if(prev.population < next.population) return -1
                     return 0
                 })
@@ -163,7 +174,36 @@ const rootReducer = (state = initialState, action ) => {
             return{
                 ...state,
                 allCountries: [...action.payload].splice(0,ITEMS_PER_PAGE), 
+                allActivitiesBackup: [...action.payload].splice(0,ITEMS_PER_PAGE), 
             };
+            case ORDER_NAME_ACTIVITY:
+                if(action.payload === "az"){
+                    const allActivityNameOrder = [...state.activityFiltered].sort((prev, next) => {
+                        if(prev.name > next.name) return 1
+                        if(prev.name < next.name) return -1
+                        return 0
+                    })
+                    return({
+                        ...state,
+                        allActivities:[...allActivityNameOrder].splice(0, ITEMS_PER_PAGE),
+                        activityFiltered: allActivityNameOrder,
+                        currentPage: 0
+                    })
+                }
+                else if(action.payload === "za"){
+                    const allActivityNameOrder = [...state.activityFiltered].sort((prev, next) => {
+                        if(prev.name > next.name) return -1
+                        if(prev.name < next.name) return 1
+                        return 0
+                    })
+                    return({
+                        ...state,
+                        allActivities:[...allActivityNameOrder].splice(0, ITEMS_PER_PAGE),
+                        activityFiltered: allActivityNameOrder,
+                        currentPage: 0
+                    })
+                }
+           
 
         // eslint-disable-next-line no-fallthrough
         default:

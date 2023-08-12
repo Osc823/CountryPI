@@ -13,26 +13,26 @@
   background-image: url('https://c.wallhere.com/photos/2d/89/world_map_typography_black_background-72045.png!d');
   background-size: cover;
   background-repeat: no-repeat;
+  
   z-index: -1;
 }
 
 .content {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Cambia a flex-start para alinear el contenido en la parte superior */
-  height: 100%;
-  padding: 0 10px;
+  align-items: center;
+
 }
 
-.content h1 {
+.h11 {
   font-size: 2rem;
-  margin: 0 20px;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }
 
 .content p {
   font-size: 1.2rem;
-  margin: 10px 0;
 }
 
 .imgCont {
@@ -40,7 +40,33 @@
   display: flex;
   align-items: center;
   justify-content: right;
-  margin-top: 100px;
+  border-radius: 150px;
+
+}
+.navImg img {
+    width: 6rem;
+    height: auto;
+    border-radius: 150px;
+    
+}
+.container {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.welcome {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h11 {
+  font-family: "Your Favorite Font", cursive; /* Reemplaza con la fuente que prefieras */
+  font-size: 45px;
+  color: #ffffff;
+  margin-right: 190px;
 }
 
 .imgCont img {

@@ -11,11 +11,21 @@ const Detail = () => {
 
     const dispatch = useDispatch();
     const detail = useSelector((state) => state.detail)
+    console.log('detalle', detail);
+    const activities = useSelector((state) => state.allActivitiesBackup)
+    console.log('Actividadesdet',activities);
     const {id} = useParams();
 
+    
+    const list = detail.activities?.length ? detail.activities.map(act => 
+        
+        <li key={act.id} value={act.id}>{act.name}</li>)
+            : <Link to={'/create'}>No hay actividades</Link> ;
+    
+    
     useEffect(()=>{
         dispatch(getDetail(id))
-    }, [id])
+    }, [])
     
     return(
             <div className={style.container} >
@@ -34,6 +44,9 @@ const Detail = () => {
                                 <p>{detail.capital}</p>
                                 <label htmlFor="">Poblacion</label>
                                 <p>{detail.population}</p>
+                                <label htmlFor="">Actividad</label>
+                                <ul>{list}</ul>
+
                             </div>
                             <div className={style.containerImg} >
                                     <img src={detail.image} />

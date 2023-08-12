@@ -12,7 +12,7 @@ const SearchBar = () => {
         event.preventDefault()
         setName(event.target.value)
     }
-
+    
     const handlerSubmit = (event) => {
         event.preventDefault()
         dispatch(searchName(name))

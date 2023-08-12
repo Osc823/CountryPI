@@ -1,4 +1,4 @@
-const {createActivy, getAllActivities, searchActivity} = require("../controllers/activityController");
+const {createActivy, getAllActivities, searchActivity,activityDelete} = require("../controllers/activityController");
 const {Activity, Country} = require("../db")
 
 const getActivitiesHandler = async (req, res) => {
@@ -20,13 +20,24 @@ const createActivitiesHandler = async (req, res) => {
     await activity.setCountries(countries);
 
     const cratedActivity = await searchActivity(activity)
-    res.status(200).json({ msg: "Actividad creada con éxito!", cratedActivity });
+    res.status(200).json({ msg: "Actividad creada", cratedActivity });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 }
 
+const deleteActivitiesHandler = async (req,res) => {
+  const {name} = req.params
+  try {
+      const deletedActivty= await activityDelete(name)
+      res.status(200).json({ msg: "Actividad eliminada con éxito!", deletedActivty})
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
     getActivitiesHandler,
-    createActivitiesHandler
+    createActivitiesHandler,
+    deleteActivitiesHandler
 }

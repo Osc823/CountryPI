@@ -3,7 +3,7 @@
 import { useEffect} from "react";
 import CardsCountry from "../../components/Cards/CardsCountry";
 import style from "./home.module.css";
-import { getCountry, orderName, orderPopulation, selectActivity, selectContinent } from "../../redux/actions/actions";
+import { getActivity,resetPage, getCountry, orderName, orderPopulation, selectContinent } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Paginado from "../../components/Paginado/Paginado";
@@ -13,6 +13,8 @@ const Home = () => {
     
     const allCountries = useSelector((state) => state.allCountries);
     const allActivities = useSelector((state) => state.allActivities);
+
+    console.log('Actividades',allActivities);
     
 
     const orderByName = (event) => {
@@ -27,14 +29,17 @@ const Home = () => {
         dispatch(selectContinent(event.target.value));
     };
 
-    const filterActivity = (event) => {
-        dispatch(selectActivity(event.target.value));
-    }
+    // const filterActivity = (event) => {
+    //     dispatch(selectActivity(event.target.value));
+    // }
 
     
     useEffect(() => {
-      dispatch(getCountry())
+      dispatch(getCountry());
+      dispatch(getActivity());
+      dispatch(resetPage())
     },[])
+    
 
     
 
@@ -49,15 +54,16 @@ const Home = () => {
                 <button name="maxPopulation" onClick={filterPopulation}>Mayor poblacion</button>
                 <button name="minPopulation" onClick={filterPopulation}>Menor poblacion</button>
                 </div>
-                <div>
-                    <select name="name" onChange={filterActivity} className={style.selCon}>
+                {/* <div>
+                    <select name="name" onChange={(e)=>filterActivity(e)} className={style.selCon}>
+                        <option value={"undefined"}>Seleccione...</option>
                        {allActivities.map((act) => {
                             return (
-                                <option key={act.id}>{act.name}</option>
+                                <option value={act.id} key={act.id}>{act.name}</option>
                             );
                         })}
                     </select>
-                </div>
+                </div> */}
                 <div>
                     <select onChange={(e)=>filterContinent(e)} name="continent" className={style.selectCon}>
                         <option value="All">Todos los Continentes</option>

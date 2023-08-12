@@ -1,6 +1,6 @@
 /* cards.module.css */
 .cardCont {
-    background-color: #708090;
+    background-color: #c3cad167;
     width: calc(20% - 2rem); /* Asegúrate de que las tarjetas tengan el espacio adecuado entre ellas */
     display: flex;
     flex-direction: column;
@@ -33,10 +33,13 @@
   }
   
   .cardSeparator {
+    display: flex;
+    align-items: center; /* Centrado horizontal */
+    justify-content: center; /* Centrado vertical */
     background-color: #ccc;
     width: 85%;
-    height: 2px;
-    margin: 10px 0;
+    height: 4px;
+    margin: 10px auto; 
   }
   
   .cardInfo {

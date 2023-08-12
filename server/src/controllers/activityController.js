@@ -1,5 +1,6 @@
 const {Activity, Country} = require("../db");
 
+
 const getAllActivities = async () => {
     return await Activity.findAll({
         include: Country,
@@ -24,8 +25,17 @@ const searchActivity = async (activity) => {
       })
 }
 
+const activityDelete = (name) => {
+    Activity.destroy({
+        where: {
+            name: name
+        }
+    });
+}
+
 module.exports = {
     getAllActivities,
     createActivy,
-    searchActivity
+    searchActivity ,
+    activityDelete
 }

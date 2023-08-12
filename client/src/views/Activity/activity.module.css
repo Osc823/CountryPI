@@ -4,12 +4,79 @@
 }
 .container{
     background-color: transparent;
-  /* background-image: url("https://cdn2.tfx.company/images/clickwallpapers-world-map-wallpaper-in-full-hd-img2.jpg"); */
-  background-size: cover; /* Ajusta la imagen de fondo al tamaño de la tarjeta */
+  background-image: url("https://fondosmil.com/fondo/10829.jpg");
+  background-size:cover; /* Ajusta la imagen de fondo al tamaño de la tarjeta */
   background-position: center; /* Centra la imagen de fondo */
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   margin-top: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.conten{
+  border-radius: 10px;
+  padding: 15px;
+  /* background:#000000; */
+  background: linear-gradient(to bottom, rgb(13, 3, 1), black);
+  /* background: linear-gradient(to bottom, #000000, rgb(8, 26, 50)); */
+}
+.numero{
+  color: #fff;
+}
+.paginationButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.paginationButtons button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.paginationButtons button:hover {
+  background-color: #f39c12;
+}
+
+.paginationButtons h2 {
+  margin: 0 10px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, #000000, rgb(8, 26, 50));
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.87);
+  border-radius: 10px;
+}
+
+.navbarButtons {
+  display: flex;
+}
+
+.navbarButtons button {
+  background: none;
+  border: none;
+  color: white;
+  margin: 0 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  border-radius: 4px;
+}
+
+.navbarButtons button:hover {
+  background-color: rgba(155, 143, 143, 0.733);
+}
+
+.navbarButtons button:active {
+  transform: scale(0.95); /* Efecto de pulsación al presionar el botón */
 }

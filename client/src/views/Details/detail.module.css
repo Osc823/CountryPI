@@ -87,7 +87,7 @@
     font-family: Arial, sans-serif Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Cambia la fuente de letra */
     cursor: pointer;
     transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-    background-image: url('ruta-a-tu-imagen-de-estrellas.jpg');
+    /* background-image: url('ruta-a-tu-imagen-de-estrellas.jpg'); */
     background-size: cover;
     background-position: center;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);

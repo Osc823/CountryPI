@@ -12,7 +12,7 @@ const Navbar = () =>  {
             <div className={styles.navLink}> 
                 <Link to={"/home"}>Home</Link>
                 <Link to={"/activity"}>Activity</Link>
-                <Link to={"/create"}>Formulario</Link>
+                
             </div>
             <div className={styles.navImg2}>
                 <img src="https://www.shutterstock.com/shutterstock/videos/1068356963/thumb/1.jpg?ip=x480" alt="" />

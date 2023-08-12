@@ -14,12 +14,12 @@ const getNameCountry = async(name) =>{
     [Op.or]: [
       {
         name: {
-          [Op.like]: `%${name}%`,
+          [Op.like]: `${name}%`,
         },
       },
       {
         name: {
-          [Op.iLike]: `%${name}%`,
+          [Op.iLike]: `${name}%`,
         },
       },
     ],
