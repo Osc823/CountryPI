@@ -25,13 +25,14 @@ const searchActivity = async (activity) => {
       })
 }
 
-const activityDelete = (name) => {
+const activityDelete = (id) => {
     Activity.destroy({
         where: {
-            name: name
+            id: id
         }
     });
 }
+
 
 module.exports = {
     getAllActivities,

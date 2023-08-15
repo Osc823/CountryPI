@@ -1,31 +1,23 @@
 
-import { useState } from "react";
 import style from "./card.module.css";
 import { Link } from "react-router-dom";
-// import {useDispatch} from "react-redux";
-// import {deleteActivity} from "../../redux/actions/actions" 
+import {deleteActivity, getActivity} from "../../redux/actions/actions" 
+import {useDispatch} from "react-redux";
 // import { useEffect } from "react";
 
 
 // eslint-disable-next-line react/prop-types
-const CardActivity = ({name, difficulty, duration, season, countries}) => {
+const CardActivity = ({id, name, difficulty, duration, season, countries}) => {
     
-    const [card, setCard] = useState([]);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(resetPage())
-    // },[])
-    const onClose = (name) =>{
-        const activityFiltered = card.filter(act =>
-           act.name !== name)
-           setCard(activityFiltered)
-     }
     
+    const dispatch = useDispatch();
 
-    // const handleRemoveClick = () => {
-    //     console.log("Button clicked"); // Agrega este console.log
-    //     dispatch(deleteActivity(name));
-    // }
+    
+    const handleRemoveClick = async (event) => {
+    await dispatch(deleteActivity(event.target.name));
+    dispatch(getActivity());
+    }
+    
     return(
         <div className={style.cardCont}>
             <div className={style.cardTittle}>
@@ -50,7 +42,7 @@ const CardActivity = ({name, difficulty, duration, season, countries}) => {
                         </div>
                     ))}
                 </div>
-                <button onClick={() => onClose(name)}>x</button>
+                <button value={id} name={id} onClick={handleRemoveClick}>x</button>
             </div>
         </div>
     )

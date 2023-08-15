@@ -13,6 +13,11 @@
   margin-top: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.navImg img{
+  width: 6rem;
+  height: auto;
+  border-radius: 150px;
+}
 .conten{
   border-radius: 10px;
   padding: 15px;
@@ -51,7 +56,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, #000000, rgb(8, 26, 50));
+  background-image: url("https://img.freepik.com/vector-premium/fondo-negro-abstracto-estrellas-su-diseno-vector-cielo-estrellado-telon-fondo-espacio_158941-101.jpg");
+    background-color: rgb(0, 0, 0);
   color: white;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.87);
@@ -79,4 +85,57 @@
 
 .navbarButtons button:active {
   transform: scale(0.95); /* Efecto de pulsación al presionar el botón */
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbarButtons {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .navbarButtons button {
+    margin: 5px 0;
+    padding: 8px 12px;
+    width: 100%;
+  }
+
+  select {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .container {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+
+  .conten {
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .paginationButtons {
+    flex-direction: row;
+    
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .paginationButtons button {
+    margin: 5px 0;
+    padding: 8px 12px;
+  }
+
+  .paginationButtons h2 {
+    margin: 5px 0;
+    padding: 15px;
+  }
 }

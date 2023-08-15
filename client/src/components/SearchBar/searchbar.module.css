@@ -25,3 +25,21 @@
 .searchButton:hover {
   background-color: #0056b3;
 }
+@media screen and (max-width: 768px) {
+  .searchContainer {
+      max-width: 100%;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px; /* Ajusta el margen superior */
+  }
+
+  .searchInput {
+      width: 100%; /* Ancho completo del input */
+      max-width: 100%; /* Máximo ancho del input */
+      margin: 0 0 10px 0; /* Margen inferior para separar del botón */
+  }
+  
+  .searchButton {
+      border-radius: 4px; /* Restauramos el radio de borde del botón */
+  }
+}

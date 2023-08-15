@@ -64,6 +64,7 @@ const Home = () => {
                         })}
                     </select>
                 </div> */}
+                
                 <div>
                     <select onChange={(e)=>filterContinent(e)} name="continent" className={style.selectCon}>
                         <option value="All">Todos los Continentes</option>

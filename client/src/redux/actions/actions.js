@@ -1,5 +1,5 @@
 import axios from "axios"
-import {GET_COUNTRY, SELECT_SEASON ,GET_ACTIVITY,ORDER_NAME_ACTIVITY, GET_DETAI_COUNTRY , DELETE_ACTIVITY ,PAGINATE, ORDER_NAME_COUNTRY, ORDER_BY_POPULATION, SELECT_ACTIVITY, SEARCH_NAME, SELECT_CONTINENT} from "./action-types"
+import {GET_COUNTRY, SELECT_SEASON,UPDATE_ACTIVITY ,GET_ACTIVITY,ORDER_NAME_ACTIVITY, GET_DETAI_COUNTRY , DELETE_ACTIVITY ,PAGINATE, ORDER_NAME_COUNTRY, ORDER_BY_POPULATION, SELECT_ACTIVITY, SEARCH_NAME, SELECT_CONTINENT} from "./action-types"
 
 export const postActivity = (state) => {
     // eslint-disable-next-line no-unused-vars
@@ -142,6 +142,20 @@ export const deleteActivity = (name) =>{
             const response = await axios.delete(`http://localhost:3001/activities/${name}`)
             dispatch({
                 type: DELETE_ACTIVITY,
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const updateActivity = (id,updatedData) => {
+    return async function(dispatch){
+        try {
+            const response = await axios.put(`http://localhost:3001/activities/${id}`,updatedData)
+            dispatch({
+                type: UPDATE_ACTIVITY,
                 payload: response.data
             })
         } catch (error) {

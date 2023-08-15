@@ -6,7 +6,7 @@ const Navbar = () =>  {
         <div className={styles.navCont}> 
             <div className={styles.navImg}>
                 <Link to={"/"}>
-                    <img src="https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2022/01/28/61f3c1f2a993a.jpeg" alt="" />
+                    <img src="https://i.gifer.com/origin/ae/ae8552cd3112e8999c3629a79ca210c8_w200.gif" alt="" />
                 </Link>
             </div>
             <div className={styles.navLink}> 

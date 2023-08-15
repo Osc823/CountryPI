@@ -3,7 +3,7 @@ import styles from "./form.module.css";
 import {getCountry, postActivity} from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import validate from "./validation";
-//import { Link } from "react-router-dom";
+
 
 const Form = () => {
 
@@ -45,7 +45,6 @@ const Form = () => {
     const handleSubmit = async () =>{
 
         await dispatch(postActivity(form));
-        alert('Creado correctamente  :)')
 
         setForm({
             name: "",
@@ -74,13 +73,16 @@ const Form = () => {
     
 
     const disable = () =>{
-       // Obtener un array con los nombres de las propiedades del objeto error
-        const errorFields = Object.keys(error);
-
-        // Verificar si al menos un mensaje de error no está vacío
-        const anyError = errorFields.map((field) => error[field] !== "").includes(true);
-
-        return anyError; // Si hay algún mensaje de error no vacío, el botón estará deshabilitado, de lo contrario, estará habilitado
+    let disabled = true;
+    for (const err in error) {
+        if (error[err] === "") {
+            disabled = false;
+        } else {
+            disabled = true;
+            return disabled; 
+        }
+    }
+    return disabled;
     }
     useEffect(() => {
         dispatch(getCountry())
@@ -89,7 +91,7 @@ const Form = () => {
     return(
         <div className={styles.pageContainer}> {/* Aplica estilos para centrar */}
             <div className={styles.formCon}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} key={"formularioActividades"}>
                     <label htmlFor="name">Nombre: </label>
                     <input onChange={handleChange} type="text" name="name" value={form.name}/>
                     <span className={styles.spamErr}>{error.name}</span>
@@ -121,9 +123,9 @@ const Form = () => {
                     <select name="countries" onChange={handleSelect}>
                         <option value={"undefined"}>Seleccione...</option>
                         {
-                            country.map((pais) => {
+                            country.map((pais, index) => {
                                 return(
-                                    <option value={pais.id} key={pais.id}>{pais.name}</option>
+                                    <option value={pais.id} key={index}>{pais.name}</option>
                                 )
                             })
                         }
@@ -136,13 +138,12 @@ const Form = () => {
                 
                 </form>
                 {
-                    form.countries.map(ele => 
-                        
-                        <div className={styles.barra} key={ele.id}>
+                    form.countries.map((ele, index) => 
+                    <div className={styles.barra} key={index}>
                         <p>{ele}</p>
                         <button className={styles.buton} onClick={() => handleDelete(ele)}>X</button>
                     </div>
-                    )
+                )
                 }
             </div>
         </div>

@@ -35,7 +35,7 @@ const Activity = () => {
         dispatch(getCountry())
         dispatch(getActivity())
         dispatch(resetPage())
-    },[dispatch])
+    },[])
 
     return(
         <div className={style.homeCont}>
@@ -53,11 +53,15 @@ const Activity = () => {
                         <option value="Primavera">Primavera</option>
                     </select>
                 </div>
+                <div className={style.navImg}>
+                    <img src="https://img1.picmix.com/output/pic/normal/8/1/5/0/8380518_4bc45.gif" alt="" />
+                </div>
                 <div className={style.navbarButtons}>
                     <button>
                         <Link to={"/create"} style={{ textDecoration: 'none', color: 'inherit' }}>Crear Actividad</Link>
                     </button>
                 </div>
+
                 <div>
                 <select name="name" onChange={(e) => filterActivity(e)} className={style.selCon}>
                     <option value={"undefined"}>Seleccione...</option>

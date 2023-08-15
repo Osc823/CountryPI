@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { GET_COUNTRY,SELECT_SEASON ,GET_ACTIVITY, GET_DETAI_COUNTRY  ,PAGINATE, ORDER_NAME_COUNTRY, ORDER_BY_POPULATION,SELECT_ACTIVITY,SEARCH_NAME, SELECT_CONTINENT, ORDER_NAME_ACTIVITY } from "../actions/action-types";
+import { GET_COUNTRY,SELECT_SEASON ,DELETE_ACTIVITY,GET_ACTIVITY, GET_DETAI_COUNTRY  ,PAGINATE, ORDER_NAME_COUNTRY, ORDER_BY_POPULATION,SELECT_ACTIVITY,SEARCH_NAME, SELECT_CONTINENT, ORDER_NAME_ACTIVITY } from "../actions/action-types";
 
 let initialState = {
     allCountries :[],
@@ -98,33 +98,26 @@ const rootReducer = (state = initialState, action ) => {
             };
 
             
-        case ORDER_NAME_COUNTRY:
-            if(action.payload === "az"){
+            case ORDER_NAME_COUNTRY:
+                // Se verifica si el payload de la acción es "az" para determinar si el orden es ascendente
+                const isAscending = action.payload === "az";
+            
+                // Se crea una copia de la lista de países filtrada del estado actual
                 const allCountryNameOrder = [...state.countryFiltered].sort((prev, next) => {
-                    if(prev.name > next.name) return 1
-                    if(prev.name < next.name) return -1
-                    return 0
-                })
-                return({
+                    // Se compara el nombre de dos países, prev y next
+                    if (prev.name > next.name) return isAscending ? 1 : -1;
+                    if (prev.name < next.name) return isAscending ? -1 : 1;
+                    return 0;
+                });
+            
+                // Se actualiza el estado con la lista ordenada y otras propiedades
+                return {
                     ...state,
-                    allCountries:[...allCountryNameOrder].splice(0, ITEMS_PER_PAGE),
+                    allCountries: [...allCountryNameOrder].splice(0, ITEMS_PER_PAGE),
                     countryFiltered: allCountryNameOrder,
                     currentPage: 0
-                })
-            }
-            else if(action.payload === "za"){
-                const allCountryNameOrder = [...state.countryFiltered].sort((prev, next) => {
-                    if(prev.name > next.name) return -1
-                    if(prev.name < next.name) return 1
-                    return 0
-                })
-                return({
-                    ...state,
-                    allCountries:[...allCountryNameOrder].splice(0, ITEMS_PER_PAGE),
-                    countryFiltered: allCountryNameOrder,
-                    currentPage: 0
-                })
-            }
+                };
+            
             // eslint-disable-next-line no-fallthrough
             case SELECT_CONTINENT:
                 // eslint-disable-next-line no-case-declarations
@@ -203,6 +196,28 @@ const rootReducer = (state = initialState, action ) => {
                         currentPage: 0
                     })
                 }
+            // eslint-disable-next-line no-fallthrough
+            case DELETE_ACTIVITY:
+                return{
+                    ...state,
+                    allActivities: action.payload,
+                    currentPage: 0,
+                    
+               }
+            // case UPDATE_ACTIVITY:
+            //     const updatedActivityIndex = state.allActivities.findIndex(activity => activity.id === action.payload.id);
+            //     if (updatedActivityIndex !== -1) {
+            //         const updatedActivities = [...state.allActivities];
+            //         updatedActivities[updatedActivityIndex] = action.payload;
+
+            //         return {
+            //             ...state,
+            //             allActivities: updatedActivities,
+            //             currentPage: 0
+            //         };
+            //     } else {
+            //         return state;
+            //     }
            
 
         // eslint-disable-next-line no-fallthrough
