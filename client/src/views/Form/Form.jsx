@@ -9,6 +9,16 @@ const Form = () => {
 
     const dispatch = useDispatch();
     const country = useSelector((state) => state.allCountriesBackup);
+    const orderCountry = country.sort((a,b) => 
+    {if (a.name > b.name) {
+        return 1;
+    } else if (a.name < b.name) {
+        return -1;
+    } else {
+        return 0;
+    }})
+
+    console.log('Paises ordenados',orderCountry);
 
     const [form, setForm] = useState({
         name: "",
@@ -17,6 +27,7 @@ const Form = () => {
         season:"",
         countries:[]
     })
+    console.log('PaisImagen', form.countries);
 
     const [error, setError] = useState({
         name: "Campo requerido",
@@ -35,6 +46,14 @@ const Form = () => {
     }
 
     const handleSelect = (event) => {
+        const value = event.target.value
+
+        const countryRepeat = form.countries.includes(value)
+
+        if (countryRepeat) {
+            return alert('Pais ya seleccionado')
+        }
+        
         setForm({
             ...form,
             countries: [...form.countries, event.target.value]
@@ -45,6 +64,7 @@ const Form = () => {
     const handleSubmit = async () =>{
 
         await dispatch(postActivity(form));
+        alert('Creado correctamente');
 
         setForm({
             name: "",
@@ -115,7 +135,7 @@ const Form = () => {
                         <option value={"Primavera"}>Primavera</option>
 
                     </select>
-                    {/* <input  type="text" name="season" value={form.season}/> */}
+
                     <span className={styles.spamErr}>{error.season}</span>
 
 
@@ -123,15 +143,15 @@ const Form = () => {
                     <select name="countries" onChange={handleSelect}>
                         <option value={"undefined"}>Seleccione...</option>
                         {
-                            country.map((pais, index) => {
+                            orderCountry.map((pais, index) => {
                                 return(
-                                    <option value={pais.id} key={index}>{pais.name}</option>
+                                    <option value={pais.id} key={index} >{pais.name}</option>
                                 )
                             })
                         }
 
                     </select>
-                    {/* <input onChange={handleChange} type="text" name="countries" value={form.countries}/> */}
+                    
                     <span className={styles.spamErr}>{error.countries}</span>
 
                         <input disabled={disable()} type="submit" />

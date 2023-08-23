@@ -1,22 +1,15 @@
 
 import style from "./card.module.css";
 import { Link } from "react-router-dom";
-import {deleteActivity, getActivity} from "../../redux/actions/actions" 
-import {useDispatch} from "react-redux";
+// import {deleteActivity, getActivity} from "../../redux/actions/actions" 
+// import {useDispatch} from "react-redux";
 // import { useEffect } from "react";
 
 
 // eslint-disable-next-line react/prop-types
-const CardActivity = ({id, name, difficulty, duration, season, countries}) => {
+const CardActivity = ({ name, difficulty, duration, season, countries}) => {
     
     
-    const dispatch = useDispatch();
-
-    
-    const handleRemoveClick = async (event) => {
-    await dispatch(deleteActivity(event.target.name));
-    dispatch(getActivity());
-    }
     
     return(
         <div className={style.cardCont}>
@@ -42,10 +35,37 @@ const CardActivity = ({id, name, difficulty, duration, season, countries}) => {
                         </div>
                     ))}
                 </div>
-                <button value={id} name={id} onClick={handleRemoveClick}>x</button>
             </div>
         </div>
     )
 }
 
 export default CardActivity;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // const dispatch = useDispatch();
+    
+        
+        // const handleRemoveClick = async (event) => {
+        //     await dispatch(deleteActivity(event.target.name));
+        //     dispatch(getActivity());
+        // }
+            {/* <button className={style.buton} value={id} name={id} onClick={handleRemoveClick}>x</button> */}

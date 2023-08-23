@@ -2,7 +2,9 @@
 .conten{
   border-radius: 10px;
   padding: 15px;
-  background:rgb(15, 24, 41);
+  background-image: url("https://img.freepik.com/vector-premium/fondo-negro-abstracto-estrellas-su-diseno-vector-cielo-estrellado-telon-fondo-espacio_158941-101.jpg");
+
+ 
 }
 .numero{
   color: white;
@@ -15,7 +17,7 @@
 }
 
 .paginationButtons button {
-  background-color: #ffffff;
+  background-color: #00aeff;
   color: #000000;
   border: none;
   border-radius: 4px;

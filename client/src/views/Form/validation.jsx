@@ -1,7 +1,13 @@
 const validate = (name, value, error, setError) =>{
     const newError = {...error};
+    
     if (name === "name") {
-        newError.name = value !== "" ? "" : "El campo no puede estar vacio"; 
+        if (value !== "" && value.length < 19) {
+            newError.name = "" 
+        }
+        else{
+            newError.name = "No puede estar vacío ni mayor a 18 caracteres"; 
+        }
     }
     if (name === 'difficulty') {
         if (value !== "") {

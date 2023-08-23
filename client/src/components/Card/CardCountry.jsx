@@ -2,7 +2,7 @@ import style from "./card.module.css";
 import {Link} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const CardCountry = ({id, name, image, continent, population}) => {
+const CardCountry = ({id, name, image, continent, population,area}) => {
     return(
         <div className={style.cardCont}>
                 <Link to={`/detail/${id}`} style={{ textDecoration: 'none' }}>
@@ -13,7 +13,8 @@ const CardCountry = ({id, name, image, continent, population}) => {
             <div className={style.cardInfo}>
                 <img src={image} alt="Logo" />
                 <h2>{continent}</h2>
-                <h2>{population}</h2>
+                <h2>Poblacion: {population}</h2>
+                <h2>Area: {area}</h2>
             </div>
                 </Link>
         </div>

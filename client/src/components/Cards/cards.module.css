@@ -4,6 +4,9 @@
   flex-wrap: wrap;
   margin-top: 20px;
 }
+.letra{
+  color: white;
+}
 
 @media (max-width: 768px) {
   .cardsCont {

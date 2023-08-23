@@ -1,6 +1,7 @@
 import { useDispatch, useSelector} from "react-redux";
-import { paginate,} from "../../redux/actions/actions";
+import { paginate} from "../../redux/actions/actions";
 import style from "./paginado.module.css"
+
 
 const Paginado = () => {
     const dispatch = useDispatch();
@@ -9,6 +10,7 @@ const Paginado = () => {
         dispatch(paginate(event.target.name))
         
     }
+    
     const numPage = useSelector((state) => state.currentPage)
 
     return(

@@ -9,8 +9,9 @@ const CardsCountry = ({info}) => {
         <div className={style.cardsCont}>
             {
                 // eslint-disable-next-line react/prop-types
-                info.map((pais) => <CardCountry key={pais.id} id={pais.id} name={pais.name} 
-                image={pais.image} continent={pais.continent} population={pais.population} />)
+                    info.length? info.map((pais) => <CardCountry key={pais.id} id={pais.id} name={pais.name} 
+                    image={pais.image} continent={pais.continent} population={pais.population} area={pais.area}/>) : (<h1 className={style.letra}>Pais no encotrado</h1>)
+                
             }
         </div>
     )

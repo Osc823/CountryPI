@@ -13,7 +13,7 @@
 }
 
 .searchButton {
-  background-color: #007bff;
+  background-color: #ff0000;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -25,16 +25,43 @@
 .searchButton:hover {
   background-color: #0056b3;
 }
+
+@media screen and (max-width: 956px) {
+  .searchContainer {
+    max-width: 80%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* Ajusta el margen superior */
+  }
+}
+
+@media screen and (max-width: 916px) {
+  .searchContainer {
+    max-width: 80%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* Ajusta el margen superior */
+}
+
+.searchInput {
+    width: 100%; /* Ancho completo del input */
+    max-width: 100%; /* Máximo ancho del input */
+}
+
+.searchButton {
+    border-radius: 4px; /* Restauramos el radio de borde del botón */
+}
+}
+
 @media screen and (max-width: 768px) {
   .searchContainer {
-      max-width: 100%;
       flex-direction: column;
       align-items: center;
       margin-top: 10px; /* Ajusta el margen superior */
   }
 
   .searchInput {
-      width: 100%; /* Ancho completo del input */
+      width: 90%; /* Ancho completo del input */
       max-width: 100%; /* Máximo ancho del input */
       margin: 0 0 10px 0; /* Margen inferior para separar del botón */
   }

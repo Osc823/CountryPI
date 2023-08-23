@@ -1,28 +1,27 @@
 //import './App.css';
 import Home from './views/Home/Home';
-import {Route, Routes, useLocation} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Landing from './views/Landing/Landing';
 import Form from './views/Form/Form';
 import Detail from './views/Details/Details';
 import Navbar from './components/Navbar/Navbar';
 import Activity from './views/Activity/Activity';
+import PaginaError from './components/NotFound/pagina400';
 
 
 function App() {
-  const location = useLocation();
 
   return (
     <div>
-      
-      {location.pathname !== "/" &&  <Navbar/>}
        
-        <Routes>
-          <Route exact path={"/"} Component={Landing}/>
-          <Route path={'/home'} Component={Home}/>
-          <Route path={"/create"} Component={Form}/>
-          <Route path={"/activity"} element={<Activity/>}/>
-          <Route path={"/detail/:id"} Component={Detail}/>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Landing />}/>
+        <Route path="/home" element={<><Navbar/><Home/></>}/>
+        <Route path="/create" element={<><Navbar/><Form/></>}/>
+        <Route path="/activity" element={<><Navbar/><Activity/></>}/>
+        <Route path="/detail/:id" element={<><Navbar/><Detail/></>}/>
+        <Route path="*" element={<PaginaError/>} /> 
+      </Routes>
      
       
     </div>

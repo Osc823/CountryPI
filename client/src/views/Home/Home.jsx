@@ -1,9 +1,7 @@
-//import React from "react";
-
 import { useEffect} from "react";
 import CardsCountry from "../../components/Cards/CardsCountry";
 import style from "./home.module.css";
-import { getActivity,resetPage, getCountry, orderName, orderPopulation, selectContinent } from "../../redux/actions/actions";
+import {resetPage, getCountry, orderName, orderPopulation, selectContinent, area } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Paginado from "../../components/Paginado/Paginado";
@@ -12,10 +10,6 @@ const Home = () => {
     const dispatch = useDispatch();
     
     const allCountries = useSelector((state) => state.allCountries);
-    const allActivities = useSelector((state) => state.allActivities);
-
-    console.log('Actividades',allActivities);
-    
 
     const orderByName = (event) => {
         dispatch(orderName(event.target.name))
@@ -29,14 +23,12 @@ const Home = () => {
         dispatch(selectContinent(event.target.value));
     };
 
-    // const filterActivity = (event) => {
-    //     dispatch(selectActivity(event.target.value));
-    // }
-
+    const areaMeMa =(event) =>{
+        dispatch(area(event.target.name))
+    }
     
     useEffect(() => {
       dispatch(getCountry());
-      dispatch(getActivity());
       dispatch(resetPage())
     },[])
     
@@ -54,16 +46,6 @@ const Home = () => {
                 <button name="maxPopulation" onClick={filterPopulation}>Mayor poblacion</button>
                 <button name="minPopulation" onClick={filterPopulation}>Menor poblacion</button>
                 </div>
-                {/* <div>
-                    <select name="name" onChange={(e)=>filterActivity(e)} className={style.selCon}>
-                        <option value={"undefined"}>Seleccione...</option>
-                       {allActivities.map((act) => {
-                            return (
-                                <option value={act.id} key={act.id}>{act.name}</option>
-                            );
-                        })}
-                    </select>
-                </div> */}
                 
                 <div>
                     <select onChange={(e)=>filterContinent(e)} name="continent" className={style.selectCon}>
@@ -75,7 +57,18 @@ const Home = () => {
                         <option value="Oceania">Oceania</option>
                     </select>
                 </div>
-                <SearchBar />
+                <div className={style.navbarButtons}>
+                    <button name="AreaMay" onClick={areaMeMa}>Area Mayor</button>
+                    <button name="AreaMen" onClick={areaMeMa}>Area Menor</button>
+                </div>
+                <div>
+                    <div className={style.searchBarContainer}>
+                        <div >
+                            <SearchBar />
+                        </div>
+                    </div>
+                </div>
+         
             </div>
             <div className={style.card}>
                 <CardsCountry info={allCountries} />

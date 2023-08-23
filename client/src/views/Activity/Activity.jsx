@@ -45,7 +45,7 @@ const Activity = () => {
                 <button name="za" onClick={orderByName}>Z-A</button>
                 </div>
                 <div>
-                    <select onChange={(e) => filterSeason(e)}>
+                    <select onChange={(e) => filterSeason(e)}  className={style.selCon}>
                         <option value="All">Temporada</option>
                         <option value="Verano">Verano</option>
                         <option value="Invierno">Invierno</option>
@@ -54,7 +54,7 @@ const Activity = () => {
                     </select>
                 </div>
                 <div className={style.navImg}>
-                    <img src="https://img1.picmix.com/output/pic/normal/8/1/5/0/8380518_4bc45.gif" alt="" />
+                    <img src="https://cdn.pixabay.com/animation/2022/11/16/14/56/14-56-49-778_512.gif" alt="" />
                 </div>
                 <div className={style.navbarButtons}>
                     <button>
@@ -80,9 +80,14 @@ const Activity = () => {
             </div>
             <div className={style.conten}>
             <div className={style.paginationButtons}>
-                <button className={style.btn} name="prev" onClick={page}>Anterior</button>
+                <div>
+                    <button className={style.btn} name="prev" onClick={page}>Anterior</button>
+                </div>
                 <h2 className={style.numero}>{numPage + 1}</h2>
-                <button className={style.btn} name="next" onClick={page}>Siguiente</button>
+                <div>
+                    <button className={style.btn} name="next" onClick={page}>Siguiente</button>
+                </div>
+                
             </div>
         </div>
         </div>

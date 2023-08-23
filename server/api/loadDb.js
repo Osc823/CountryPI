@@ -13,7 +13,8 @@ const dataLoad = async () => {
             image: country.flags ? country.flags.png : 'default_image_url',
             continent: country.region || 'Unknown Continent',
             capital: country.capital ? country.capital[0] : 'Unknown Capital',
-            population: country.population
+            population: country.population,
+            area: country.area
         }});
         await Country.bulkCreate(countries);
       }

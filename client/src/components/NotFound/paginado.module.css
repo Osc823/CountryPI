@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 97vh; /* Esto asegura que el contenedor ocupe el 97% de la pantalla */
+    background-color: #07213a;
+}
+
+.image {
+    background-image: url("https://img.freepik.com/premium-vector/404-error-with-meteorite-stars-meteort-space_114341-144.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.link {
+    margin-bottom: 20px; /* Agrega un margen inferior para separar el botón de la parte inferior */
+    text-decoration: none;
+    color: white;
+    background-color: #ff4d4d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.link:hover {
+    background-color: #e63946; /* Cambia el color de fondo al pasar el mouse sobre el botón */
+}
